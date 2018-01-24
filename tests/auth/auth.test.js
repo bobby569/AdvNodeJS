@@ -1,17 +1,18 @@
-const { login } = require('../helpers/auth');
 const Page = require('../helpers/page');
 
-let page;
+let page, browser;
 
 beforeEach(async () => {
-  page = Page();
-  await login(page);
+  page = await Page.build();
+  await page.login();
+});
+
+afterEach(async () => {
+  await page.close();
 });
 
 test('Logs in', async () => {
-  const anchor = await page.evaluate(
-    () => document.querySelector('a[href="/api/logout"]').innerHTML
-  );
+  const anchor = await page.getContentsOf('a[href="/api/logout"]');
 
   expect(anchor).toEqual('Logout');
 });
