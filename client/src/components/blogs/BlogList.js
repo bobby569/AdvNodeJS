@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import map from 'lodash/map';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchBlogs } from '../../actions';
+import React, { Component } from "react";
+import map from "lodash/map";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { fetchBlogs } from "../../actions";
 
 class BlogList extends Component {
   componentDidMount() {
@@ -36,4 +36,7 @@ function mapStateToProps({ blogs }) {
   return { blogs };
 }
 
-export default connect(mapStateToProps, { fetchBlogs })(BlogList);
+export default connect(
+  mapStateToProps,
+  { fetchBlogs }
+)(BlogList);
