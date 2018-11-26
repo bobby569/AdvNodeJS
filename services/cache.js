@@ -1,6 +1,7 @@
+const keys = require("../config/keys");
 const mongoose = require("mongoose");
 const util = require("util");
-const client = require("redis").createClient("redis://127.0.0.1:6379");
+const client = require("redis").createClient(keys.redisUrl);
 
 const exec = mongoose.Query.prototype.exec;
 client.hget = util.promisify(client.hget);
